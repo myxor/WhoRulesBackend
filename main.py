@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 import beer_controller
 from db import create_tables
+import argparse
 
 app = Flask(__name__)
 
@@ -55,4 +56,9 @@ def after_request(response):
 
 if __name__ == "__main__":
     create_tables()
-    app.run(host='0.0.0.0', port=8000, debug=False)
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p", help="Port", type=int, default=8000)
+    args = parser.parse_args()
+
+    app.run(host='0.0.0.0', port=args.p, debug=False)
