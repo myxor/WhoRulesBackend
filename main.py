@@ -8,8 +8,8 @@ app = Flask(__name__)
 
 @app.route('/beer', methods=["GET"])
 def get_beers():
-    beer = beer_controller.get_beers()
-    return jsonify(beer)
+    beers = beer_controller.get_beers()
+    return jsonify(beers)
 
 
 @app.route("/beer", methods=["POST"])

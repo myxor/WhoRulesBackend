@@ -2,12 +2,23 @@ from db import get_db
 from datetime import datetime
 
 
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        # col[0] is the column name
+        d[col[0]] = row[idx]
+    return d
+
+
 def get_beers():
     db = get_db()
+    db.row_factory = dict_factory
     cursor = db.cursor()
     query = "SELECT id, date, defendant, defendant_id, prosecutors, description, count FROM beers"
     cursor.execute(query)
-    return cursor.fetchall()
+    data = cursor.fetchall()
+    return data
+
 
 
 def insert_beer(date, defendant, defendant_id, prosecutors, description, count):
