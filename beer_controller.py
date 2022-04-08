@@ -40,7 +40,7 @@ def insert_beer(date, defendant, defendant_id, prosecutors, description, count):
                 "(?, ?, ?, ?, ?, ?) "
     cursor.execute(statement, [date, defendant, defendant_id, prosecutors, description, count])
     db.commit()
-    return True
+    return cursor.lastrowid
 
 
 def update_beer(id, date, defendant, defendant_id, prosecutors, description, count):
@@ -50,7 +50,8 @@ def update_beer(id, date, defendant, defendant_id, prosecutors, description, cou
                 "count WHERE id = ?"
     cursor.execute(statement, [date, defendant, defendant_id, prosecutors, description, count, id])
     db.commit()
-    return True
+    data = cursor.fetchall()
+    return data
 
 
 def delete_beer(id):
