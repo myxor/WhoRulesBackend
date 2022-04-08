@@ -27,8 +27,8 @@ def insert_beer():
     return jsonify(result)
 
 
-@app.route("/beer", methods=["PUT"])
-def update_beer():
+@app.route("/beer/<id>", methods=["PUT"])
+def update_beer(id):
     beer_details = request.get_json()
 
     date = beer_details.get('date', None)
