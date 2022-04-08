@@ -16,6 +16,9 @@ def get_beers():
 def insert_beer():
     beer_details = request.get_json()
 
+    if beer_details is None:
+        return "", 400
+
     date = beer_details.get('date', None)
     defendant = beer_details.get('defendant', 1)
     defendant_id = beer_details.get('defendant_id', 0)
@@ -30,6 +33,9 @@ def insert_beer():
 @app.route("/beer/<id>", methods=["PUT"])
 def update_beer(id):
     beer_details = request.get_json()
+
+    if beer_details is None:
+        return "", 400
 
     date = beer_details.get('date', None)
     defendant = beer_details.get('defendant', 1)
