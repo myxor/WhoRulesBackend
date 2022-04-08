@@ -48,6 +48,12 @@ def update_beer(id):
     return jsonify(result)
 
 
+@app.route("/beer/<id>", methods=["DELETE"])
+def delete_beer(id):
+    result = beer_controller.delete_beer(id)
+    return jsonify(result)
+
+
 @app.after_request
 def after_request(response):
     response.headers[

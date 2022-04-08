@@ -51,3 +51,12 @@ def update_beer(id, date, defendant, defendant_id, prosecutors, description, cou
     cursor.execute(statement, [date, defendant, defendant_id, prosecutors, description, count, id])
     db.commit()
     return True
+
+
+def delete_beer(id):
+    db = get_db()
+    cursor = db.cursor()
+    statement = "DELETE FROM beers WHERE id = ?"
+    cursor.execute(statement, [id])
+    db.commit()
+    return True
